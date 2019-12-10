@@ -1,6 +1,8 @@
-﻿namespace OnlineShop.ViewModels.Product
+﻿using OnlineShop.Mappings;
+
+namespace OnlineShop.ViewModels.Product
 {
-    public class ProductViewModel
+    public class ProductViewModel : IMapFrom<Models.Product>
     {
         public int Id { get; set; }
 

@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using OnlineShop.Data;
 using OnlineShop.InputModels.Category;
@@ -20,24 +20,28 @@ namespace OnlineShop.Services
 
         public IEnumerable<CategoryViewModel> All() => context.Categories.To<CategoryViewModel>();
 
-        public Task Create(CategoryInputModel model)
+        public async Task Create(CategoryInputModel model)
         {
-            throw new NotImplementedException();
+            Category category = model.To<Category>();
+            await context.Categories.AddAsync(category);
+            await context.SaveChangesAsync();
         }
 
-        public Task Delete(int id)
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            Category category = context.Categories.Find(id);
+            context.Categories.Remove(category);
+            await context.SaveChangesAsync();
         }
 
-        public Task<T> GetById<T>(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public T GetById<T>(int id) => context.Categories.Where(x => x.Id == id).To<T>().FirstOrDefault();
 
-        public Task Update(CategoryInputModel model)
+        public async Task Update(CategoryInputModel model)
         {
-            throw new NotImplementedException();
+            Category category = context.Categories.Find(model.Id);
+            category.Name = model.Name;
+            context.Categories.Update(category);
+            await context.SaveChangesAsync();
         }
     }
 }

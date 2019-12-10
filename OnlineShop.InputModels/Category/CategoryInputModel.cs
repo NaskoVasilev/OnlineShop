@@ -1,9 +1,10 @@
 ﻿using OnlineShop.Common;
+using OnlineShop.Mappings;
 using System.ComponentModel.DataAnnotations;
 
 namespace OnlineShop.InputModels.Category
 {
-    public class CategoryInputModel
+    public class CategoryInputModel : IMapFrom<Models.Category>, IMapTo<Models.Category>
     {
         public int Id { get; set; }
 

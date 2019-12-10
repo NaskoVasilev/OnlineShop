@@ -3,6 +3,9 @@ using System.Threading.Tasks;
 using OnlineShop.Data;
 using OnlineShop.InputModels.Product;
 using OnlineShop.ViewModels.Product;
+using OnlineShop.Mappings;
+using OnlineShop.Models;
+using System.Linq;
 
 namespace OnlineShop.Services
 {
@@ -15,29 +18,35 @@ namespace OnlineShop.Services
             this.context = context;
         }
 
-        public IEnumerable<ProductViewModel> All()
+        public IEnumerable<ProductViewModel> All() => context.Products.To<ProductViewModel>();
+
+        public async Task Create(ProductInputModel model)
         {
-            throw new System.NotImplementedException();
+            Product product = model.To<Product>();
+            await context.Products.AddAsync(product);
+            await context.SaveChangesAsync();
         }
 
-        public Task Create(ProductInputModel model)
+        public async Task Delete(int id)
         {
-            throw new System.NotImplementedException();
+            Product product = context.Products.Find(id);
+            context.Products.Remove(product);
+            await context.SaveChangesAsync();
         }
 
-        public Task Delete(int id)
-        {
-            throw new System.NotImplementedException();
-        }
+        public T GetById<T>(int id) => context.Products.Where(p => p.Id == id).To<T>().FirstOrDefault();
 
-        public Task<T> GetById<T>(int id)
+        public async Task Update(ProductInputModel model)
         {
-            throw new System.NotImplementedException();
-        }
+            Product product = context.Products.Find(model.Id);
+            product.Name = model.Name;
+            product.Image = model.Image;
+            product.Price = model.Price;
+            product.Description = model.Description;
+            product.CategoryId = model.CategoryId;
 
-        public Task Update(ProductInputModel model)
-        {
-            throw new System.NotImplementedException();
+            context.Products.Update(product);
+            await context.SaveChangesAsync();
         }
     }
 }

@@ -11,7 +11,7 @@ namespace OnlineShop.Services
 
         Task Create(CategoryInputModel model);
 
-        Task<T> GetById<T>(int id);
+        T GetById<T>(int id);
 
         Task Update(CategoryInputModel model);
 

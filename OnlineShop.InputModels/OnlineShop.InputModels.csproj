@@ -6,6 +6,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OnlineShop.Common\OnlineShop.Common.csproj" />
+    <ProjectReference Include="..\OnlineShop.Mappings\OnlineShop.Mappings.csproj" />
+    <ProjectReference Include="..\OnlineShop.Models\OnlineShop.Models.csproj" />
   </ItemGroup>
 
 </Project>

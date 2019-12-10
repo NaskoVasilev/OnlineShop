@@ -1,6 +1,8 @@
-﻿namespace OnlineShop.ViewModels.Category
+﻿using OnlineShop.Mappings;
+
+namespace OnlineShop.ViewModels.Category
 {
-    public class CategoryViewModel
+    public class CategoryViewModel : IMapFrom<Models.Category>
     {
         public int Id { get; set; }
 
