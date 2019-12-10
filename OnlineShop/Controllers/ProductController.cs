@@ -17,6 +17,7 @@ namespace OnlineShop.Controllers
             this.productService = productService;
         }
 
+        [HttpGet]
         public ActionResult<IEnumerable<ProductViewModel>> Get() => Ok(productService.All());
 
         [HttpGet("{id}")]

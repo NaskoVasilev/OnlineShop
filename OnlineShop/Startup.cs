@@ -15,6 +15,7 @@ using OnlineShop.Mappings;
 using OnlineShop.InputModels.Product;
 using OnlineShop.ViewModels.Product;
 using OnlineShop.Services;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace OnlineShop
 {
@@ -33,9 +34,17 @@ namespace OnlineShop
 			services.AddDbContext<ApplicationDbContext>(options => options
 				.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-			services.AddIdentity<ApplicationUser, IdentityRole>()
-					.AddDefaultTokenProviders()
-					.AddEntityFrameworkStores<ApplicationDbContext>();
+			services.AddIdentity<ApplicationUser, IdentityRole>(options => 
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequiredLength = 6;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredUniqueChars = 0;
+            })
+			.AddDefaultTokenProviders()
+			.AddEntityFrameworkStores<ApplicationDbContext>();
 
 			var jwtSettingsSection = Configuration.GetSection("JwtSettings");
 			services.Configure<JwtSettings>(jwtSettingsSection);
@@ -63,6 +72,11 @@ namespace OnlineShop
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<ICategoryService, CategoryService>();
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info() { Title = "Online shop API", Version = "v1" });
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 		}
 
@@ -83,11 +97,16 @@ namespace OnlineShop
 			}
 			else
 			{
-				// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
 				app.UseHsts();
 			}
 
-			app.UseAuthentication();
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Online shop API V1");
+            });
+
+            app.UseAuthentication();
 			app.UseHttpsRedirection();
 			app.UseMvc();
 		}

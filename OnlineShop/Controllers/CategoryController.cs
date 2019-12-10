@@ -17,6 +17,7 @@ namespace OnlineShop.Controllers
             this.categoryService = categoryService;
         }
 
+        [HttpGet]
         public ActionResult<IEnumerable<CategoryViewModel>> Get() => Ok(categoryService.All());
 
         [HttpGet("{id}")]
