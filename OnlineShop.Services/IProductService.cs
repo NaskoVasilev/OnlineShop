@@ -13,7 +13,7 @@ namespace OnlineShop.Services
 
         T GetById<T>(int id);
 
-        Task Update(ProductInputModel model);
+        Task Update(int id, ProductInputModel model);
 
         Task Delete(int id);
     }

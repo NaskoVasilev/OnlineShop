@@ -36,9 +36,9 @@ namespace OnlineShop.Services
 
         public T GetById<T>(int id) => context.Categories.Where(x => x.Id == id).To<T>().FirstOrDefault();
 
-        public async Task Update(CategoryInputModel model)
+        public async Task Update(int id, CategoryInputModel model)
         {
-            Category category = context.Categories.Find(model.Id);
+            Category category = context.Categories.Find(id);
             category.Name = model.Name;
             context.Categories.Update(category);
             await context.SaveChangesAsync();

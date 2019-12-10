@@ -11,6 +11,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using OnlineShop.Mappings;
+using OnlineShop.InputModels.Product;
+using OnlineShop.ViewModels.Product;
+using OnlineShop.Services;
 
 namespace OnlineShop
 {
@@ -56,13 +60,18 @@ namespace OnlineShop
 				};
 			});
 
-			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<ICategoryService, CategoryService>();
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 		{
-			if (env.IsDevelopment())
+            AutoMapperConfig.RegisterMappings(typeof(ProductInputModel).Assembly, typeof(ProductViewModel).Assembly);
+
+            if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
                 

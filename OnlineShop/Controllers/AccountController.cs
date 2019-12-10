@@ -23,7 +23,7 @@ namespace OnlineShop.Controllers
 		[HttpPost("[action]")]
 		public async Task<ActionResult<ApplicationUser>> Register(RegisterInputModel model)
 		{
-			ApplicationUser user = new ApplicationUser
+			var user = new ApplicationUser
 			{
 				Email = model.Email,
 				UserName = model.Username,

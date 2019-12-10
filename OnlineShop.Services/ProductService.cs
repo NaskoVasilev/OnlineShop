@@ -36,9 +36,9 @@ namespace OnlineShop.Services
 
         public T GetById<T>(int id) => context.Products.Where(p => p.Id == id).To<T>().FirstOrDefault();
 
-        public async Task Update(ProductInputModel model)
+        public async Task Update(int id, ProductInputModel model)
         {
-            Product product = context.Products.Find(model.Id);
+            Product product = context.Products.Find(id);
             product.Name = model.Name;
             product.Image = model.Image;
             product.Price = model.Price;
