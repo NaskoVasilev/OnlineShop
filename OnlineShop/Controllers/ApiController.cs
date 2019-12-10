@@ -6,9 +6,5 @@ namespace OnlineShop.Controllers
 	[ApiController]
 	public class ApiController : ControllerBase
 	{
-        public ActionResult<int[]> Values()
-        {
-            return new int[] { 1, 2, 3 };
-        }
 	}
 }

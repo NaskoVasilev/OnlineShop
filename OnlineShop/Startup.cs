@@ -65,6 +65,12 @@ namespace OnlineShop
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
+                
+                using(IServiceScope serviceScope = app.ApplicationServices.CreateScope())
+                {
+                    ApplicationDbContext context = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                    context.Database.Migrate();
+                }
 			}
 			else
 			{
