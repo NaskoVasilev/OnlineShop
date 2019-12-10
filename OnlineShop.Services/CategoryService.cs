@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using OnlineShop.Data;
 using OnlineShop.InputModels.Category;
+using OnlineShop.Mappings;
+using OnlineShop.Models;
 using OnlineShop.ViewModels.Category;
 
 namespace OnlineShop.Services
@@ -16,10 +18,7 @@ namespace OnlineShop.Services
             this.context = context;
         }
 
-        public IEnumerable<CategoryViewModel> All()
-        {
-            throw new NotImplementedException();
-        }
+        public IEnumerable<CategoryViewModel> All() => context.Categories.To<CategoryViewModel>();
 
         public Task Create(CategoryInputModel model)
         {
