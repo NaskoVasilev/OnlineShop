@@ -16,6 +16,8 @@ using OnlineShop.InputModels.Product;
 using OnlineShop.ViewModels.Product;
 using OnlineShop.Services;
 using Swashbuckle.AspNetCore.Swagger;
+using OnlineShop.Common.Settings;
+using OnlineShop.Data.Seeding;
 
 namespace OnlineShop
 {
@@ -77,6 +79,13 @@ namespace OnlineShop
                 c.SwaggerDoc("v1", new Info() { Title = "Online shop API", Version = "v1" });
             });
 
+            services.AddSingleton(x => Configuration.GetSection("Admin").Get<AdminSettings>());
+
+            services.AddCors(options => options.AddPolicy("AllowWebApp", builder => builder
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .WithOrigins("http://localhost:4200")));
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -93,6 +102,7 @@ namespace OnlineShop
                 {
                     ApplicationDbContext context = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
                     context.Database.Migrate();
+                    new ApplicationDbContextSeeder().SeedAsync(context, serviceScope.ServiceProvider).GetAwaiter().GetResult();
                 }
             }
             else
@@ -106,7 +116,7 @@ namespace OnlineShop
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Online shop API V1");
             });
 
-
+            app.UseCors("AllowWebApp");
             app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseMvc();

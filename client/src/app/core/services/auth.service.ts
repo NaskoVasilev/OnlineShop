@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { globalConstants } from 'src/app/common/global-constants';
+import { HttpClient } from '@angular/common/http';
+import { Subject } from 'rxjs';
+import * as jwtDecode from "jwt-decode";
 
 @Injectable({
   providedIn: 'root'
@@ -9,27 +12,55 @@ import { globalConstants } from 'src/app/common/global-constants';
 export class AuthService {
   constructor(
     private router: Router,
-    private snackbar: MatSnackBar
+    private http: HttpClient
   ) { }
 
-  getToken(): string{
+  public isAuth = false;
+  public isAdmin = false;
+  public username: string;
+  isAuthChanged = new Subject<boolean>();
+
+  initializeAuthenticationState() {
+    let token = this.getToken();
+    if (!token) {
+      this.isAuth = false;
+      this.isAdmin = false;
+      this.username = "";
+    }
+    else {
+      try {
+        var tokenData = jwtDecode(token);
+        this.username = tokenData['unique_name'];
+        this.isAuth = true;
+        this.isAdmin = tokenData["role"] === "Administrator";
+      }
+      catch (Error) {
+        this.isAuth = false;
+        this.isAdmin = false;
+        this.username = "";
+      }
+    }
+
+    this.isAuthChanged.next(true);
+  }
+
+  getToken(): string {
     return localStorage.getItem(globalConstants.jwtTokenKey);
   }
 
-  get isAuth(): boolean{
-    return this.getToken() != null;
+  setToken(token: string) {
+    return localStorage.setItem(globalConstants.jwtTokenKey, token);
   }
 
-  register(email: string, password: string) {
+  register(email: string, password: string, username: string) {
+    return this.http.post("api/Account/Register", { email, password, username, confirmPassword: password });
   }
 
-  login(email: string, password: string) {
-
-    // this.snackbar.open(error.message, 'Undo', {
-    //   duration: 3000
-    // });
+  login(username: string, password: string) {
+    return this.http.post("api/Account/Login", { username, password });
   }
 
   logout() {
+    localStorage.clear();
   }
 }

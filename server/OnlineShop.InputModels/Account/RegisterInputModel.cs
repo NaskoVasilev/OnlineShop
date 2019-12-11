@@ -5,7 +5,6 @@ namespace OnlineShop.InputModels.Account
 	public class RegisterInputModel
 	{
 		private const int UsernameMinLength = 5;
-		private const int FullNameMinLength = 7;
 		private const int PasswordMinLength = 5;
 
 		[Required]
@@ -15,10 +14,6 @@ namespace OnlineShop.InputModels.Account
 		[Required]
 		[EmailAddress]
 		public string Email { get; set; }
-
-		[Required]
-		[MinLength(FullNameMinLength)]
-		public string FullName { get; set; }
 
 		[Compare(nameof(ConfirmPassword))]
 		[MinLength(PasswordMinLength)]

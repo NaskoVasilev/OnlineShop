@@ -18,7 +18,7 @@ namespace OnlineShop.Controllers
 		public AccountController(UserManager<ApplicationUser> userManager)
 		{
 			this.userManager = userManager;
-		}
+		}   
 
 		[HttpPost("[action]")]
 		public async Task<ActionResult<ApplicationUser>> Register(RegisterInputModel model)
@@ -27,10 +27,9 @@ namespace OnlineShop.Controllers
 			{
 				Email = model.Email,
 				UserName = model.Username,
-				FullName = model.FullName,
 			};
 
-			var result = await userManager.CreateAsync(user, model.Password);
+            IdentityResult result = await userManager.CreateAsync(user, model.Password);
 			if(!result.Succeeded)
 			{
 				return BadRequest(result.Errors.Select(e => e.Description).ToList());
@@ -48,7 +47,7 @@ namespace OnlineShop.Controllers
 				return BadRequest("Username or password is incorrect.");
 			}
 
-			return Ok(jwtToken);	
+			return new JsonResult(jwtToken);	
 		}
 
 		[Authorize]
