@@ -1,24 +1,23 @@
 <mat-toolbar color="primary">
-    <div fxHide.gt-xs>
-      <button mat-icon-button (click)="toggleSidenav()">
-        <mat-icon>menu</mat-icon>
-      </button>
-    </div>
-    <div><a routerLink="/">Online shop</a></div>
-    <ul
-        fxFlex 
-        fxLayout 
-        fxLayoutAlign="flex-end" 
-        fxLayoutGap="20px" 
-        fxHide.xs 
-        class="navigation-links">
-      <li><a *ngIf="!isAuth" routerLink="/login">Log In</a></li>
-      <li><a *ngIf="!isAuth" routerLink="/signup">Sign Up</a></li>
-      <li><a *ngIf="isAuth && isAdmin" routerLink="/product/create">Create Product</a></li>
-      <li><a *ngIf="isAuth && isAdmin" routerLink="/category/create">Create Category</a></li>
-      <li><a routerLink="/product/all">All Products</a></li>
-      <li><a routerLink="/category/all">All categories</a></li>
-      <!-- <li><a *ngIf="isAuth" routerLink="/product">Products</a></li> -->
-      <li><a *ngIf="isAuth" (click)="logout()" class="logout-link">Logout</a></li>
-    </ul>
-  </mat-toolbar>
+  <div fxHide.gt-xs>
+    <button mat-icon-button (click)="toggleSidenav()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+  <div><a routerLink="/">Онлайн магазин</a></div>
+  <ul fxFlex fxLayout fxLayoutAlign="flex-end" fxLayoutGap="20px" fxHide.xs class="navigation-links">
+    <li><a *ngIf="!isAuth" routerLink="/login">Вход</a></li>
+    <li><a *ngIf="!isAuth" routerLink="/signup">Регистрация</a></li>
+    <li><a routerLink="/product/all">Продукти</a></li>
+    <li><a routerLink="/category/all">Категории</a></li>
+    <!-- <li><a *ngIf="isAuth" routerLink="/product">Products</a></li> -->
+    <li>
+      <a [matMenuTriggerFor]="menu">Админ панел</a>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/product/create">Добавяне на продукт</button>
+        <button mat-menu-item routerLink="/category/create">Добавяне на категория</button>
+      </mat-menu>
+    </li>
+    <li><a *ngIf="isAuth" (click)="logout()" class="logout-link">Изход</a></li>
+  </ul>
+</mat-toolbar>

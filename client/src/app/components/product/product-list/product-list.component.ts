@@ -9,9 +9,18 @@ import Product from '../../shared/models/product.model';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent {
-  products$: Observable<Product[]>
+  products: Product[]
+  selectedProductId = 0;
 
   constructor(private productService: ProductService) {
-    this.products$ = productService.all();
-   }
+    productService.all().subscribe(data => this.products = data);
+  }
+
+  onMouseOverHandler(id: number) {
+    this.selectedProductId = id;
+  }
+
+  onMouseOutHandler() {
+    this.selectedProductId = 0;
+  }
 }
