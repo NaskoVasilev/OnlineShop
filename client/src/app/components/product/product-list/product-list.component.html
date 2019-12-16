@@ -1,0 +1,13 @@
+<div>
+    <div *ngFor="let product of products$ | async">
+        <mat-card>
+            <mat-card-title>{{product.name}}</mat-card-title>
+            <mat-card-content>{{product.description}}</mat-card-content>
+            <img class="w-50" mat-card-image src='https://media-cdn.tripadvisor.com/media/photo-s/08/e7/2c/fe/inage-ocean-park.jpg'>
+            <mat-card-actions>
+                <a routerLink="/product/edit/id"  mat-raised-button color="primary">Edit</a>
+                <a routerLink="/product/edit/delete" mat-raised-button color="primary">Delete</a>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

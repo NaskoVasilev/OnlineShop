@@ -3,13 +3,31 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { LoginComponent } from './auth/login/login.component';
+import { ProductCreateComponent } from './components/product/product-create/product-create.component';
+import { ProductListComponent } from './components/product/product-list/product-list.component';
+import { CategoryListComponent } from './components/category/category-list/category-list.component';
+import { CategoryCreateComponent } from './components/category/category-create/category-create.component';
 
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  {
+    path: 'product', children: [
+      { path: '', component: ProductListComponent },
+      { path: 'all', component: ProductListComponent },
+      { path: 'create', component: ProductCreateComponent },
+    ]
+  },
+  {
+    path: 'category', children: [
+      { path: '', component: CategoryListComponent },
+      { path: 'all', component: CategoryListComponent },
+      { path: 'create', component: CategoryCreateComponent },
+    ]
+  }
 ];
 
 @NgModule({

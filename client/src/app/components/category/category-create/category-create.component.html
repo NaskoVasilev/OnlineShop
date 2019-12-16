@@ -1,0 +1,11 @@
+<form (ngSubmit)="formHandler()" [formGroup]="categoryForm" fxLayout="column" fxLayoutAlign="center center">
+    <mat-form-field appearance="standard" style="width:50%">
+      <mat-label>Име</mat-label>
+      <input formControlName="name" matInput placeholder="Въведете име на продукта" />
+      <mat-error *ngIf="name.hasError('required')">Името е задаължително!</mat-error>
+      <mat-error *ngIf="name.hasError('minlength')">Името трябва да бъде поне {{nameMinLength}} символа дълго</mat-error>
+      <mat-error *ngIf="name.hasError('maxlength')">Името трябва да бъде най-много {{nameMaxLength}} символа</mat-error>
+    </mat-form-field>
+    
+    <button [disabled]="categoryForm.invalid" type="submit" mat-fab color="primary">Create</button>
+</form>

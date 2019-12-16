@@ -16,6 +16,10 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 import { BaseUrlInterceptor } from './core/interceptors/base-url.interceptor';
+import { ProductCreateComponent } from './components/product/product-create/product-create.component';
+import { ProductListComponent } from './components/product/product-list/product-list.component';
+import { CategoryListComponent } from './components/category/category-list/category-list.component';
+import { CategoryCreateComponent } from './components/category/category-create/category-create.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,11 @@ import { BaseUrlInterceptor } from './core/interceptors/base-url.interceptor';
     HomeComponent,
     SidebarListComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    ProductCreateComponent,
+    ProductListComponent,
+    CategoryListComponent,
+    CategoryCreateComponent
   ],
   imports: [
     BrowserModule,

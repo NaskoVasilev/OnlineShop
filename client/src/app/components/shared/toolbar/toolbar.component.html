@@ -15,6 +15,9 @@
       <li><a *ngIf="!isAuth" routerLink="/login">Log In</a></li>
       <li><a *ngIf="!isAuth" routerLink="/signup">Sign Up</a></li>
       <li><a *ngIf="isAuth && isAdmin" routerLink="/product/create">Create Product</a></li>
+      <li><a *ngIf="isAuth && isAdmin" routerLink="/category/create">Create Category</a></li>
+      <li><a routerLink="/product/all">All Products</a></li>
+      <li><a routerLink="/category/all">All categories</a></li>
       <!-- <li><a *ngIf="isAuth" routerLink="/product">Products</a></li> -->
       <li><a *ngIf="isAuth" (click)="logout()" class="logout-link">Logout</a></li>
     </ul>
