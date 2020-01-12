@@ -1,11 +1,14 @@
-<form (ngSubmit)="formHandler()" [formGroup]="categoryForm" fxLayout="column" fxLayoutAlign="center center">
-    <mat-form-field appearance="standard" class="w-40">
-      <mat-label>Име</mat-label>
-      <input formControlName="name" matInput placeholder="Въведете име на продукта" />
-      <mat-error *ngIf="name.hasError('required')">Името е задаължително!</mat-error>
-      <mat-error *ngIf="name.hasError('minlength')">Името трябва да бъде поне {{nameMinLength}} символа дълго</mat-error>
-      <mat-error *ngIf="name.hasError('maxlength')">Името трябва да бъде най-много {{nameMaxLength}} символа</mat-error>
-    </mat-form-field>
-    
-    <button [disabled]="categoryForm.invalid" type="submit" mat-fab color="primary">Добави</button>
+<div class="d-flex justify-content-center">
+<form class="w-50" (ngSubmit)="formHandler()" [formGroup]="categoryForm">
+  <div class="form-group">
+    <label>Име</label>
+    <input class="form-control" formControlName="name" type="text" placeholder="Име на категорията">
+    <span class="text-danger" *ngIf="name.touched && name.hasError('required')">Името е задаължително!</span>
+    <span class="text-danger" *ngIf="name.hasError('minlength')">Името трябва да бъде поне {{nameMinLength}} символа
+      дълго</span>
+    <span class="text-danger" *ngIf="name.hasError('maxlength')">Името трябва да бъде най-много {{nameMaxLength}}
+      символа</span>
+  </div>
+  <button [disabled]="categoryForm.invalid" type="submit" class="btn btn-primary">Добави</button>
 </form>
+</div>

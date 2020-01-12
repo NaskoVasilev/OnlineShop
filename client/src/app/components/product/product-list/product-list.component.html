@@ -1,14 +1,17 @@
-<div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="10px" class="m-2">
-    <div *ngFor="let product of products" style="width: 23%;">
-        <mat-card (mouseover)="onMouseOverHandler(product.id)" (mouseout)="onMouseOutHandler(product.id)">
-            <mat-card-title>{{product.name}}</mat-card-title>
-            <mat-card-content *ngIf="selectedProductId === product.id">{{product.description}}</mat-card-content>
-            <img mat-card-image fxFill [src]="product.image">
-            <!-- <mat-card-actions>
-                <a routerLink="/product/edit/id"  mat-raised-button color="primary">Edit</a>
-                <a routerLink="/product/edit/delete" mat-raised-button color="primary">Delete</a>
-            </mat-card-actions> -->
-            <mat-card-footer class="p-2">Цена: {{product.price}} лв.</mat-card-footer>
-        </mat-card>
+<div>
+    <div *ngFor="let product of products">
+        <div class="card" class="w-25" (mouseover)="onMouseOverHandler(product.id)"
+            (mouseout)="onMouseOutHandler(product.id)">
+            <img [src]="product.image" class="card-img-top" alt="{{product.name}}">
+            <div class="card-body">
+                <h5 class="card-title">{{product.name}}</h5>
+                <h4 class="card-subtitle mb-2 text-muted">Цена: {{product.price}} лв.</h4>
+                <p *ngIf="selectedProductId === product.id" class="card-text">{{product.description}}</p>
+                <div class="d-flex justify-content-between">
+                    <a routerLink="/product/edit/id" class="btn btn-warning">Edit</a>
+                    <a routerLink="/product/edit/delete" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

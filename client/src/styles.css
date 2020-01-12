@@ -1,4 +1,4 @@
-@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import '~bootstrap/dist/css/bootstrap.min.css';
 
 html, body {
   font-family: 'Raleway', sans-serif;

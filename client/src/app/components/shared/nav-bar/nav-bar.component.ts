@@ -1,13 +1,12 @@
-import { Component, OnInit, Output, EventEmitter, OnChanges } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { ImplicitReceiver } from '@angular/compiler';
 
 @Component({
-  selector: 'app-toolbar',
-  templateUrl: './toolbar.component.html',
-  styleUrls: ['./toolbar.component.css']
+  selector: 'app-nav-bar',
+  templateUrl: './nav-bar.component.html',
+  styleUrls: ['./nav-bar.component.css']
 })
-export class ToolbarComponent {
+export class NavBarComponent {
   @Output() sidenavToggle = new EventEmitter<void>();
   isAuth: boolean = false;
   isAdmin: boolean = false;
@@ -22,7 +21,7 @@ export class ToolbarComponent {
       this.isAuth = this.authService.isAuth;
       this.isAdmin = this.authService.isAdmin;
     })
-   }
+  }
 
   toggleSidenav() {
     this.sidenavToggle.emit();

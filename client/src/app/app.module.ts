@@ -2,14 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
+import { NgbModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ToolbarComponent } from './components/shared/toolbar/toolbar.component';
-import { SidebarListComponent } from './components/shared/sidebar-list/sidebar-list.component';
-import { MaterialModule } from './material/material.module';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
@@ -20,28 +17,27 @@ import { ProductCreateComponent } from './components/product/product-create/prod
 import { ProductListComponent } from './components/product/product-list/product-list.component';
 import { CategoryListComponent } from './components/category/category-list/category-list.component';
 import { CategoryCreateComponent } from './components/category/category-create/category-create.component';
+import { NavBarComponent } from './components/shared/nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ToolbarComponent,
     HomeComponent,
-    SidebarListComponent,
     LoginComponent,
     SignupComponent,
     ProductCreateComponent,
     ProductListComponent,
     CategoryListComponent,
-    CategoryCreateComponent
+    CategoryCreateComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    MaterialModule,
-    FlexLayoutModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
