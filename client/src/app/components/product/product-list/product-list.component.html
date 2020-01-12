@@ -2,13 +2,13 @@
     <div *ngFor="let product of products" style="width: 23%;">
         <mat-card (mouseover)="onMouseOverHandler(product.id)" (mouseout)="onMouseOutHandler(product.id)">
             <mat-card-title>{{product.name}}</mat-card-title>
+            <mat-card-content *ngIf="selectedProductId === product.id">{{product.description}}</mat-card-content>
             <img mat-card-image fxFill [src]="product.image">
             <!-- <mat-card-actions>
                 <a routerLink="/product/edit/id"  mat-raised-button color="primary">Edit</a>
                 <a routerLink="/product/edit/delete" mat-raised-button color="primary">Delete</a>
             </mat-card-actions> -->
-            <mat-card-content *ngIf="selectedProductId === product.id">{{product.description}}</mat-card-content>
-            <mat-card-footer md-colors="{}" class="p-2">Цена: {{product.price}} лв.</mat-card-footer>
+            <mat-card-footer class="p-2">Цена: {{product.price}} лв.</mat-card-footer>
         </mat-card>
     </div>
 </div>
