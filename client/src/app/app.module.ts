@@ -18,6 +18,7 @@ import { ProductListComponent } from './components/product/product-list/product-
 import { CategoryListComponent } from './components/category/category-list/category-list.component';
 import { CategoryCreateComponent } from './components/category/category-create/category-create.component';
 import { NavBarComponent } from './components/shared/nav-bar/nav-bar.component';
+import { ProductEditComponent } from './components/product/product-edit/product-edit.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { NavBarComponent } from './components/shared/nav-bar/nav-bar.component';
     ProductListComponent,
     CategoryListComponent,
     CategoryCreateComponent,
-    NavBarComponent
+    NavBarComponent,
+    ProductEditComponent,
   ],
   imports: [
     BrowserModule,

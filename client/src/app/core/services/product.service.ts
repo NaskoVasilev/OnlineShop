@@ -18,8 +18,8 @@ export class ProductService {
     return this.http.get<Product[]>(this.route);
   }
 
-  edit(product: Product){
-    return this.http.put(this.route, product);
+  edit(product: Product, id: number){
+    return this.http.put(this.route + `/${id}`, product);
   }
 
   getById(id: number){
