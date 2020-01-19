@@ -1,16 +1,5 @@
 <div class="d-flex justify-content-around">
     <ng-container *ngFor="let product of products">
-        <div class="card w-23" (mouseover)="onMouseOverHandler(product.id)" (mouseout)="onMouseOutHandler(product.id)">
-            <img [src]="product.image" class="card-img-top image-height" alt="{{product.name}}">
-            <div class="card-body">
-                <h5 class="card-title">{{product.name}}</h5>
-                <h4 class="card-subtitle mb-2 text-muted">Цена: {{product.price}} лв.</h4>
-                <p *ngIf="selectedProductId === product.id" class="card-text">{{product.description}}</p>
-                <div class="d-flex justify-content-between">
-                <a routerLink="/product/edit/{{product.id}}" class="btn btn-warning">Edit</a>
-                <a routerLink="/product/delete/{{product.id}}" class="btn btn-danger">Delete</a>
-                </div>
-            </div>
-        </div>
+        <app-product-info [product]="product" class="w-23"></app-product-info>
     </ng-container>
 </div>

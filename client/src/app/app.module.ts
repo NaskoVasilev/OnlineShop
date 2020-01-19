@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { NgbModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbDropdownModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +19,9 @@ import { CategoryListComponent } from './components/category/category-list/categ
 import { CategoryCreateComponent } from './components/category/category-create/category-create.component';
 import { NavBarComponent } from './components/shared/nav-bar/nav-bar.component';
 import { ProductEditComponent } from './components/product/product-edit/product-edit.component';
+import { ProductDetailsComponent } from './components/product/product-details/product-details.component';
+import { ProductInfoComponent } from './components/product/product-info/product-info.component';
+import { ProductDeleteModalComponent } from './components/product/product-delete-modal/product-delete-modal.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,11 @@ import { ProductEditComponent } from './components/product/product-edit/product-
     CategoryCreateComponent,
     NavBarComponent,
     ProductEditComponent,
+    ProductDetailsComponent,
+    ProductInfoComponent,
+    ProductDeleteModalComponent,
   ],
+  entryComponents: [ ProductDeleteModalComponent ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
