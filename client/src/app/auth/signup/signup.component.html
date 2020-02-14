@@ -1,25 +1,36 @@
-<form 
-    (ngSubmit)="signup()" 
-    [formGroup]="signupForm"
-    fxLayout="column"
-    fxLayoutAlign="center center"
-    fxLayoutGap="20px">
-  <mat-form-field>
-    <input formControlName="email" matInput type="email" placeholder="Your email...">
-    <mat-hint>Enter a valid email address.</mat-hint>
-    <mat-error *ngIf="signupForm.get('email').hasError('required')">Email is required.</mat-error>
-    <mat-error *ngIf="signupForm.get('email').hasError('email')">Email is invalid.</mat-error>
-  </mat-form-field>
-  <mat-form-field>
-    <input formControlName="username" matInput type="text" placeholder="Your username...">
-    <mat-hint>Enter a valid username.</mat-hint>
-    <mat-error *ngIf="signupForm.get('username').hasError('required')">Username is required.</mat-error>
-  </mat-form-field>
-  <mat-form-field>
-    <input formControlName="password" matInput type="password" placeholder="Your password...">
-    <mat-hint>Enter a valid password.</mat-hint>
-    <mat-error *ngIf="signupForm.get('password').hasError('required')">Password is required.</mat-error>
-    <mat-error *ngIf="signupForm.get('password').hasError('minlength')">Password must be at least 6 symbols.</mat-error>
-  </mat-form-field>
-  <button [disabled]="signupForm.invalid" mat-raised-button type="submit" color="primary">Sign Up</button>
-</form>
+<div class="d-flex justify-content-center">
+  <form class="w-50" (ngSubmit)="signup()" [formGroup]="signupForm">
+    <div class="form-group">
+      <label>Потребителско име</label>
+      <input class="form-control" formControlName="username" type="text"
+        placeholder="Въведете Вашето потребителско име">
+      <span class="text-danger"
+        *ngIf="signupForm.get('username').touched && signupForm.get('username').hasError('required')">
+        Потребителското име е задължително!
+      </span>
+    </div>
+    <div class="form-group">
+      <label>Email адрес</label>
+      <input class="form-control" formControlName="email" type="email" placeholder="Въведете Вашият email адрес">
+      <span class="text-danger" *ngIf="signupForm.get('email').touched && signupForm.get('email').hasError('required')">
+        Email адреса е задължителен!
+      </span>
+      <span class="text-danger" *ngIf="signupForm.get('email').touched && signupForm.get('email').hasError('email')">
+        Email адреса e невалиден!
+      </span>
+    </div>
+    <div class="form-group">
+      <label>Парола</label>
+      <input class="form-control" formControlName="password" type="password" placeholder="Въведете Вашата парола">
+      <span class="text-danger"
+        *ngIf="signupForm.get('password').touched && signupForm.get('password').hasError('required')">
+        Паролата е задължителена!
+      </span>
+      <span class="text-danger"
+        *ngIf="signupForm.get('password').touched && signupForm.get('password').hasError('minlength')">
+        Паролата трябва да е дълга поне 6 символа!
+      </span>
+    </div>
+    <button [disabled]="signupForm.invalid" type="submit" class="btn btn-primary">Регистрация</button>
+  </form>
+</div>

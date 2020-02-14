@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material';
 import { globalConstants } from 'src/app/common/global-constants';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
@@ -53,11 +52,11 @@ export class AuthService {
   }
 
   register(email: string, password: string, username: string) {
-    return this.http.post("api/Account/Register", { email, password, username, confirmPassword: password });
+    return this.http.post("Account/Register", { email, password, username, confirmPassword: password });
   }
 
   login(username: string, password: string) {
-    return this.http.post("api/Account/Login", { username, password });
+    return this.http.post("Account/Login", { username, password });
   }
 
   logout() {

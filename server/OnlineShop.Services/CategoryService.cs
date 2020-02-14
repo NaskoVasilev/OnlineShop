@@ -6,6 +6,7 @@ using OnlineShop.InputModels.Category;
 using OnlineShop.Mappings;
 using OnlineShop.Models;
 using OnlineShop.ViewModels.Category;
+using OnlineShop.Common.Extensions;
 
 namespace OnlineShop.Services
 {
@@ -19,6 +20,8 @@ namespace OnlineShop.Services
         }
 
         public IEnumerable<CategoryViewModel> All() => context.Categories.To<CategoryViewModel>();
+
+        public int Count() => context.Categories.Count();
 
         public async Task Create(CategoryInputModel model)
         {

@@ -7,6 +7,9 @@ import { ProductCreateComponent } from './components/product/product-create/prod
 import { ProductListComponent } from './components/product/product-list/product-list.component';
 import { CategoryListComponent } from './components/category/category-list/category-list.component';
 import { CategoryCreateComponent } from './components/category/category-create/category-create.component';
+import { ProductEditComponent } from './components/product/product-edit/product-edit.component';
+import { ProductResolver } from './core/resolvers/product.resolver';
+import { ProductDetailsComponent } from './components/product/product-details/product-details.component';
 
 
 const routes: Routes = [
@@ -19,6 +22,22 @@ const routes: Routes = [
       { path: '', component: ProductListComponent },
       { path: 'all', component: ProductListComponent },
       { path: 'create', component: ProductCreateComponent },
+      { 
+        path: 'edit/:id', 
+        component: ProductEditComponent,
+        resolve : 
+        { 
+          product: ProductResolver
+        } 
+      },
+      { 
+        path: 'details/:id', 
+        component: ProductDetailsComponent,
+        resolve : 
+        { 
+          product: ProductResolver
+        } 
+      }
     ]
   },
   {

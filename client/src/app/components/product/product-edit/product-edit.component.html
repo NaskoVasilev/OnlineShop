@@ -19,7 +19,11 @@
     <div class="form-group">
       <label>Kатегория на продукта</label>
       <select class="form-control" formControlName="categoryId" aria-placeholder="Изберете категория на продукта">
-        <option *ngFor="let category of categories$ | async" [value]="category.id">{{category.name}}</option>
+        <option 
+          *ngFor="let category of categories$ | async" 
+          [value]="category.id" 
+          [selected]="category.id == categoryId.value">{{category.name}}
+        </option>
       </select>
       <span class="text-danger" *ngIf="categoryId.touched && categoryId.hasError('required')">Категорията е задаължителна!</span>
     </div>
@@ -37,6 +41,6 @@
       <span class="text-danger" *ngIf="description.hasError('minlength')">Oписанието трябва да бъде поне {{descriptionMinLength}} символа дълго!</span>
       <span class="text-danger" *ngIf="description.hasError('maxlength')">Oписанието трябва да бъде най-много {{descriptionMaxLength}} символа!</span>
     </div>
-    <button [disabled]="productForm.invalid" type="submit" class="btn btn-primary">Добави</button>
+    <button [disabled]="productForm.invalid" type="submit" class="btn btn-primary">Редактиране</button>
   </form>
 </div>

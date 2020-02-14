@@ -16,5 +16,7 @@ namespace OnlineShop.Services
         Task Update(int id, CategoryInputModel model);
 
         Task Delete(int id);
+
+        int Count();
     }
 }

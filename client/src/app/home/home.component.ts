@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -7,8 +6,6 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  joinForm: FormGroup;
-
   constructor(
   ) { }
 }

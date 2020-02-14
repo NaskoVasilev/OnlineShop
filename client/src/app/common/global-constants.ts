@@ -1,3 +1,7 @@
 export const globalConstants = {
-    jwtTokenKey: "token"
+    jwtTokenKey: "token",
+    pagination:{
+        defaultPage: 1,
+        itemsPerPage: 10
+    }
 }
