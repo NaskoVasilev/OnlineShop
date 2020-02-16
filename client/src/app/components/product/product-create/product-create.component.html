@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-center">
+  <form class="w-50" (ngSubmit)="formHandler()" [formGroup]="productForm">
+    <div class="form-group">
+      <label>Име</label>
+      <input class="form-control" formControlName="name" type="text" placeholder="Име на категорията">
+      <span class="text-danger" *ngIf="name.touched && name.hasError('required')">Името е задаължително!</span>
+      <span class="text-danger" *ngIf="name.hasError('minlength')">Името трябва да бъде поне {{nameMinLength}} символа дълго!</span>
+      <span class="text-danger" *ngIf="name.hasError('maxlength')">Името трябва да бъде най-много {{nameMaxLength}} символа!</span>
+    </div>
+
+    <div class="form-group">
+      <label>Цена на продукта в лв.</label>
+      <input class="form-control" formControlName="price" type="number" placeholder="Въведете цена на продукта в лв.">
+      <span class="text-danger" *ngIf="price.touched && price.hasError('required')">Цената е задаължителна!</span>
+      <span class="text-danger" *ngIf="price.hasError('min')">Цената трябва да бъде поне {{priceMinValue}} лв!</span>
+      <span class="text-danger" *ngIf="price.hasError('max')">Цената трябва да бъде най-много {{priceMaxValue}} лв!</span>
+    </div>
+
+    <div class="form-group">
+      <label>Kатегория на продукта</label>
+      <select class="form-control" formControlName="categoryId" aria-placeholder="Изберете категория на продукта">
+        <option *ngFor="let category of categories$ | async" [value]="category.id">{{category.name}}</option>
+      </select>
+      <span class="text-danger" *ngIf="categoryId.touched && categoryId.hasError('required')">Категорията е задаължителна!</span>
+    </div>
+
+    <div class="form-group">
+      <label>Снимка</label>
+      <input class="form-control" formControlName="image" type="text" placeholder="Снимка.">
+    </div>
+
+    <div class="form-group">
+      <label>Описание</label>
+      <textarea class="form-control" formControlName="description" type="text"
+        placeholder="Въведете описание на продукта"></textarea>
+      <span class="text-danger" *ngIf="description.touched && description.hasError('required')">Oписанието е задаължително!</span>
+      <span class="text-danger" *ngIf="description.hasError('minlength')">Oписанието трябва да бъде поне {{descriptionMinLength}} символа дълго!</span>
+      <span class="text-danger" *ngIf="description.hasError('maxlength')">Oписанието трябва да бъде най-много {{descriptionMaxLength}} символа!</span>
+    </div>
+    <button [disabled]="productForm.invalid" type="submit" class="btn btn-primary">Добави</button>
+  </form>
+</div>
