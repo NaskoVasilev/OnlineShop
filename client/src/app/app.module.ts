@@ -22,6 +22,8 @@ import { ProductEditComponent } from './components/product/product-edit/product-
 import { ProductDetailsComponent } from './components/product/product-details/product-details.component';
 import { ProductInfoComponent } from './components/product/product-info/product-info.component';
 import { ProductDeleteModalComponent } from './components/product/product-delete-modal/product-delete-modal.component';
+import { CategoryLinksComponent } from './components/category/category-links/category-links.component';
+import { SearchFormComponent } from './components/shared/search-form/search-form.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { ProductDeleteModalComponent } from './components/product/product-delete
     ProductDetailsComponent,
     ProductInfoComponent,
     ProductDeleteModalComponent,
+    CategoryLinksComponent,
+    SearchFormComponent,
   ],
   entryComponents: [ ProductDeleteModalComponent ],
   imports: [

@@ -16,7 +16,12 @@
         <a class="nav-link" routerLink="/product/all">Продукти</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" routerLink="/category/all">Категории</a>
+          <div ngbDropdown class="d-inline-block">
+              <a class="nav-link active" style="cursor: pointer" id="categories-dropdown" ngbDropdownToggle>Категории</a>
+              <div ngbDropdownMenu aria-labelledby="categories-dropdown">
+                <app-category-links></app-category-links>
+              </div>
+            </div>
       </li>
       <li class="nav-item" *ngIf="isAdmin">
         <div ngbDropdown class="d-inline-block">
@@ -24,6 +29,7 @@
           <div ngbDropdownMenu aria-labelledby="admin-dropdown">
             <button ngbDropdownItem routerLink="/product/create">Добавяне на продукт</button>
             <button ngbDropdownItem routerLink="/category/create">Добавяне на категория</button>
+            <button ngbDropdownItem routerLink="/category/all">Категории</button>
           </div>
         </div>
       </li>

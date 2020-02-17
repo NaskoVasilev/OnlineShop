@@ -1,3 +1,5 @@
+<app-search-form (submit)="searchHandler($event)"></app-search-form>
+<hr>
 <div class="products">
     <ng-container *ngFor="let product of products">
         <app-product-info [product]="product" class="product-item"></app-product-info>

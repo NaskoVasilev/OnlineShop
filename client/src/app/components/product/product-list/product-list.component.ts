@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ProductService } from 'src/app/core/services/product.service';
 import Product from '../../shared/models/product.model';
+import { CategoryService } from 'src/app/core/services/category.service';
+import ProductSearchModel from '../../shared/models/product-search.model';
 
 @Component({
   selector: 'app-product-list',
@@ -9,17 +11,13 @@ import Product from '../../shared/models/product.model';
 })
 export class ProductListComponent {
   products: Product[]
-  selectedProductId = 0;
-
-  constructor(private productService: ProductService) {
+  
+  constructor(private productService: ProductService, private categoryService: CategoryService) {
     productService.all().subscribe(data => this.products = data);
   }
 
-  onMouseOverHandler(id: number) {
-    this.selectedProductId = id;
-  }
-
-  onMouseOutHandler() {
-    this.selectedProductId = 0;
+  searchHandler(searchData: ProductSearchModel){
+    console.log(searchData);
+    
   }
 }
