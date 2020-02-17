@@ -18,7 +18,8 @@ namespace OnlineShop.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<ProductViewModel>> Get() => Ok(productService.All());
+        public ActionResult<IEnumerable<ProductViewModel>> Get(int? category, string orderBy) => 
+            Ok(productService.All(category, orderBy));
 
         [HttpGet("{id}")]
         public ActionResult<ProductDetailsViewModel> Get(int id) => Ok(productService.GetById<ProductDetailsViewModel>(id));
