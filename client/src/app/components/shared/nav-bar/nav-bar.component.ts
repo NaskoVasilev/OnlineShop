@@ -7,7 +7,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent {
-  @Output() sidenavToggle = new EventEmitter<void>();
+  isCollapsed: Boolean = true;
   isAuth: boolean = false;
   isAdmin: boolean = false;
 
@@ -24,7 +24,7 @@ export class NavBarComponent {
   }
 
   toggleSidenav() {
-    this.sidenavToggle.emit();
+    this.isNavBarVisible = !this.isNavBarVisible;
   }
 
   logout() {
