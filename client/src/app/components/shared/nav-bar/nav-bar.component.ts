@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
@@ -21,10 +21,6 @@ export class NavBarComponent {
       this.isAuth = this.authService.isAuth;
       this.isAdmin = this.authService.isAdmin;
     })
-  }
-
-  toggleSidenav() {
-    this.isNavBarVisible = !this.isNavBarVisible;
   }
 
   logout() {

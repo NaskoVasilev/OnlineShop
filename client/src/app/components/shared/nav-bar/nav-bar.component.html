@@ -1,22 +1,8 @@
-<!-- <div><a routerLink="/">Онлайн магазин</a></div>
-<ul class="navigation-links">
-  <li><a *ngIf="!isAuth" routerLink="/login">Вход</a></li>
-  <li><a *ngIf="!isAuth" routerLink="/signup">Регистрация</a></li>
-  <li><a routerLink="/product/all">Продукти</a></li>
-  <li><a routerLink="/category/all">Категории</a></li>
-   <li><a *ngIf="isAuth" routerLink="/product">Products</a></li> -->
-<!-- <li>
-    <a>Админ панел</a>
-    <button routerLink="/product/create">Добавяне на продукт</button>
-    <button routerLink="/category/create">Добавяне на категория</button>
-  </li>
-  <li><a *ngIf="isAuth" (click)="logout()" class="logout-link">Изход</a></li>
-</ul> -->
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Онлайн магазин</a>
   <button class="navbar-toggler" type="button">
-    <span class="navbar-toggler-icon" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="main-navbar" aria-label="Toggle navigation"></span>
+    <span class="navbar-toggler-icon" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed"
+      aria-controls="main-navbar" aria-label="Toggle navigation"></span>
   </button>
   <div class="collapse navbar-collapse" id="main-navbar" [ngbCollapse]="isCollapsed">
     <ul class="navbar-nav">
@@ -32,10 +18,7 @@
       <li class="nav-item active">
         <a class="nav-link" routerLink="/category/all">Категории</a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" *ngIf="isAuth" (click)="logout()">Изход</a>
-      </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="isAdmin">
         <div ngbDropdown class="d-inline-block">
           <a class="nav-link active" style="cursor: pointer" id="admin-dropdown" ngbDropdownToggle>Админ панел</a>
           <div ngbDropdownMenu aria-labelledby="admin-dropdown">
@@ -43,6 +26,9 @@
             <button ngbDropdownItem routerLink="/category/create">Добавяне на категория</button>
           </div>
         </div>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" *ngIf="isAuth" (click)="logout()">Изход</a>
       </li>
     </ul>
   </div>
