@@ -1,0 +1,33 @@
+.products{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@media only screen and (min-width: 500px) {
+    .product-item{
+        width: 40%;
+        margin: 2%;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .product-item{
+        width: 45%;
+        margin: 2%;
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    .product-item{
+        width: 30%;
+        margin: 1.5%;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .product-item{
+        width: 22%;
+        margin: 1.5%;
+    }
+}
+
