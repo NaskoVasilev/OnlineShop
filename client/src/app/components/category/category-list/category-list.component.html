@@ -12,5 +12,13 @@
     </tr>
   </tbody>
 </table>
-<ngb-pagination [collectionSize]="allCategories.length" (pageChange)="getCategoriesPerPage($event)" [(page)]="page" [maxSize]="10" [rotate]="true" [boundaryLinks]="true">
+<ngb-pagination 
+  class="d-flex justify-content-center" 
+  [collectionSize]="allCategories.length"   
+  [pageSize]="pageSize" 
+  (pageChange)="getCategoriesPerPage($event)" 
+  [(page)]="page" 
+  [maxSize]="10" 
+  [rotate]="true" 
+  [boundaryLinks]="true">
 </ngb-pagination>

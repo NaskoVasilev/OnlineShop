@@ -5,3 +5,13 @@
         <app-product-info [product]="product" class="product-item"></app-product-info>
     </ng-container>
 </div>
+
+<ngb-pagination 
+    [collectionSize]="allProducts.length" 
+    [pageSize]="pageSize" 
+    (pageChange)="getProductsPerPage($event)"
+    [(page)]="page" 
+    [maxSize]="10" 
+    [rotate]="true" 
+    [boundaryLinks]="true">
+</ngb-pagination>

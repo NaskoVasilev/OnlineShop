@@ -12,13 +12,12 @@ import getPage from 'src/app/common/paginator';
 })
 export class CategoryListComponent {
   page: number = globalConstants.pagination.defaultPage;
-  collectionSize: number;
-  private itemsPerPage: number;
+  pageSize: number;
   categories: Category[] = [];
   allCategories: Category[] = [];
 
   constructor(private categoryService: CategoryService) {
-    this.itemsPerPage = globalConstants.pagination.itemsPerPage;
+    this.pageSize = globalConstants.pagination.categoriesPerPage;
     this.categoryService.all().subscribe(data => {
       this.allCategories = data;
       this.getCategoriesPerPage(this.page);
@@ -26,7 +25,6 @@ export class CategoryListComponent {
   }
 
   public getCategoriesPerPage(page: number): void {
-    debugger;
-    this.categories = getPage<Category>(this.allCategories, page, this.itemsPerPage);
+    this.categories = getPage<Category>(this.allCategories, page, this.pageSize);
   }
 }

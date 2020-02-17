@@ -3,6 +3,8 @@ import { ProductService } from 'src/app/core/services/product.service';
 import Product from '../../shared/models/product.model';
 import { CategoryService } from 'src/app/core/services/category.service';
 import ProductSearchModel from '../../shared/models/product-search.model';
+import { globalConstants } from 'src/app/common/global-constants';
+import getPage from 'src/app/common/paginator';
 
 @Component({
   selector: 'app-product-list',
@@ -10,14 +12,27 @@ import ProductSearchModel from '../../shared/models/product-search.model';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent {
-  products: Product[]
+  page: number = globalConstants.pagination.defaultPage;
+  pageSize: number;
+  allProducts: Product[] = [];
+  products: Product[] = []
   
   constructor(private productService: ProductService, private categoryService: CategoryService) {
-    productService.all().subscribe(data => this.products = data);
+    this.pageSize = globalConstants.pagination.productsPerPage;
+    this.productService.all().subscribe(data => {
+      this.allProducts = data;
+      this.getProductsPerPage(this.page);
+    })
   }
 
   searchHandler(searchData: ProductSearchModel){
-    console.log(searchData);
-    
+    this.productService.filter(searchData.category, searchData.orderBy).subscribe(data => {
+      this.allProducts = data;
+      this.getProductsPerPage(this.page);
+    })
+  }
+
+  public getProductsPerPage(page: number): void {
+    this.products = getPage<Product>(this.allProducts, page, this.pageSize);
   }
 }
