@@ -6,6 +6,7 @@ using OnlineShop.ViewModels.Product;
 using OnlineShop.Mappings;
 using OnlineShop.Models;
 using System.Linq;
+using OnlineShop.Common;
 
 namespace OnlineShop.Services
 {
@@ -18,7 +19,28 @@ namespace OnlineShop.Services
             this.context = context;
         }
 
-        public IEnumerable<ProductViewModel> All() => context.Products.To<ProductViewModel>();
+        public IEnumerable<ProductViewModel> All(int? category, string orderBy)
+        {
+            IQueryable<Product> products = context.Products;
+            if (category.HasValue)
+            {
+                int categoryId = category.Value;
+                products = products.Where(p => p.CategoryId == categoryId);
+            }
+            if (!string.IsNullOrEmpty(orderBy))
+            {
+                if(orderBy == GlobalConstants.Sotring.ByPriceAscending)
+                {
+                    products = products.OrderBy(p => p.Price);
+                }
+                else if(orderBy == GlobalConstants.Sotring.ByPriceDescending)
+                {
+                    products = products.OrderByDescending(p => p.Price);
+                }
+            }
+
+            return products.To<ProductViewModel>().ToList();
+        }
 
         public async Task Create(ProductInputModel model)
         {

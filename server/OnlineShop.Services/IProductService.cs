@@ -7,7 +7,7 @@ namespace OnlineShop.Services
 {
     public interface IProductService
     {
-        IEnumerable<ProductViewModel> All();
+        IEnumerable<ProductViewModel> All(int? category, string orderBy);
 
         Task Create(ProductInputModel model);
 

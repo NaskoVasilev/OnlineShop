@@ -11,10 +11,9 @@ import { ProductEditComponent } from './components/product/product-edit/product-
 import { ProductResolver } from './core/resolvers/product.resolver';
 import { ProductDetailsComponent } from './components/product/product-details/product-details.component';
 
-
 const routes: Routes = [
-  { path: '', pathMatch: 'full', component: HomeComponent },
-  { path: 'home', component: HomeComponent },
+  { path: '', pathMatch: 'full', component: ProductListComponent },
+  { path: 'home', component: ProductListComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
   {

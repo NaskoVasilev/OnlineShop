@@ -1,0 +1,18 @@
+<form (ngSubmit)="formHandler()" [formGroup]="searchForm" class="mt-3 text-center">
+    <div class="d-inline-flex justify-content-start">
+        <label for="category" class="pt-2 font-weight-bold text-nowrap mx-2">Категория:</label>
+        <select class="form-control" id="category" formControlName="category">
+            <option value="">Без значение</option>
+        <option *ngFor="let category of categories$ | async" [value]="category.id">{{category.name}}</option>
+        </select>
+    </div>
+    <div class="d-inline-flex justify-content-start ml-4">
+        <label for="order-by" class="pt-2 font-weight-bold text-nowrap mx-2">Подреди по:</label>
+        <select class="form-control d-inline-block" id="order-by" formControlName="orderBy">
+            <option value="">Без значение</option>
+            <option value="priceDesc">Цена във възходящ ред</option>
+            <option value="priceAsc">Цена в низходящ ред</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-outline-dark align-top ml-4">Търси</button>
+</form>

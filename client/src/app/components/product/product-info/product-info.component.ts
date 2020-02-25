@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProductDeleteModalComponent } from '../product-delete-modal/product-delete-modal.component';
 import { ProductService } from 'src/app/core/services/product.service';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-product-info',
@@ -12,8 +13,15 @@ import { Router } from '@angular/router';
 })
 export class ProductInfoComponent {
   @Input() product: Product
+  isAdmin: Boolean = false;
 
-  constructor(private modalService: NgbModal, private productService: ProductService, private router: Router) { }
+  constructor(
+    private modalService: NgbModal, 
+    private productService: ProductService, 
+    private router: Router,
+    private authService: AuthService) {
+      this.isAdmin = authService.isAdmin;
+     }
 
   open(productId: number) {
     let modal = this.modalService.open(ProductDeleteModalComponent);

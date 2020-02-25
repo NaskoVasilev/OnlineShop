@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
@@ -7,7 +7,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent {
-  @Output() sidenavToggle = new EventEmitter<void>();
+  isCollapsed: Boolean = true;
   isAuth: boolean = false;
   isAdmin: boolean = false;
 
@@ -21,10 +21,6 @@ export class NavBarComponent {
       this.isAuth = this.authService.isAuth;
       this.isAdmin = this.authService.isAdmin;
     })
-  }
-
-  toggleSidenav() {
-    this.sidenavToggle.emit();
   }
 
   logout() {

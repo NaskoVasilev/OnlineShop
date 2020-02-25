@@ -18,6 +18,11 @@ export class ProductService {
     return this.http.get<Product[]>(this.route);
   }
 
+  filter(categoryId: string, orderBy: string){
+    let params = { categoryId, orderBy };
+    return this.http.get<Product[]>(this.route, { params });
+  }
+
   edit(product: Product, id: number){
     return this.http.put(this.route + `/${id}`, product);
   }

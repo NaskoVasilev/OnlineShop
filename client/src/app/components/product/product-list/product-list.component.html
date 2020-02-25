@@ -1,5 +1,18 @@
-<div class="d-flex justify-content-around">
+<app-search-form (submit)="searchHandler($event)"></app-search-form>
+<hr>
+<div class="products">
     <ng-container *ngFor="let product of products">
-        <app-product-info [product]="product" class="w-23"></app-product-info>
+        <app-product-info [product]="product" class="product-item"></app-product-info>
     </ng-container>
 </div>
+
+<ngb-pagination 
+    class="d-flex justify-content-center" 
+    [collectionSize]="allProducts.length" 
+    [pageSize]="pageSize" 
+    (pageChange)="getProductsPerPage($event)"
+    [(page)]="page" 
+    [maxSize]="10" 
+    [rotate]="true" 
+    [boundaryLinks]="true">
+</ngb-pagination>
