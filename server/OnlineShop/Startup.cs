@@ -84,7 +84,7 @@ namespace OnlineShop
             services.AddCors(options => options.AddPolicy("AllowWebApp", builder => builder
                 .AllowAnyMethod()
                 .AllowAnyHeader()
-                .WithOrigins("http://localhost:4200")));
+                .WithOrigins("http://localhost:4200", "http://van2010shop.azurewebsites.net")));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -97,17 +97,17 @@ namespace OnlineShop
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-
-                using (IServiceScope serviceScope = app.ApplicationServices.CreateScope())
-                {
-                    ApplicationDbContext context = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-                    context.Database.Migrate();
-                    new ApplicationDbContextSeeder().SeedAsync(context, serviceScope.ServiceProvider).GetAwaiter().GetResult();
-                }
             }
             else
             {
                 app.UseHsts();
+            }
+
+            using (IServiceScope serviceScope = app.ApplicationServices.CreateScope())
+            {
+                ApplicationDbContext context = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                context.Database.Migrate();
+                new ApplicationDbContextSeeder().SeedAsync(context, serviceScope.ServiceProvider).GetAwaiter().GetResult();
             }
 
             app.UseSwagger();

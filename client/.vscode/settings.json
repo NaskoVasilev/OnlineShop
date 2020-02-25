@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/5b226b62-b8ea-4f8a-976c-2ff5f2f5a07d/resourceGroups/OnlineShop/providers/Microsoft.Web/sites/van2010",
+    "appService.deploySubpath": "dist\\slido"
+}
