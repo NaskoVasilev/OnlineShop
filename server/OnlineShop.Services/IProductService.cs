@@ -9,7 +9,7 @@ namespace OnlineShop.Services
     {
         IEnumerable<ProductViewModel> All(int? category, string orderBy);
 
-        Task Create(ProductInputModel model);
+        Task Create(ProductInputModel model, string path);
 
         T GetById<T>(int id);
 

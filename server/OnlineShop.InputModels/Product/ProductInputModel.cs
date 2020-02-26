@@ -1,4 +1,6 @@
-﻿using OnlineShop.Common;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
+using OnlineShop.Common;
 using OnlineShop.Mappings;
 using System.ComponentModel.DataAnnotations;
 
@@ -15,8 +17,8 @@ namespace OnlineShop.InputModels.Product
         [Range(ModelConstants.ProductPriceMinValue, ModelConstants.ProductPriceMaxValue)]
         public decimal Price { get; set; }
 
-        [Required]
-        public string Image { get; set; }
+        [IgnoreMap]
+        public IFormFile Image { get; set; }
 
         [Required]
         public string Description { get; set; }

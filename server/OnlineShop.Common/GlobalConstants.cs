@@ -10,5 +10,10 @@
          
             public const string ByPriceAscending = "priceAsc";
         }
+
+        public class FileSystem
+        {
+            public const string ImagesFolderNamePattern = "dd-MM-yyyy";
+        }
     }
 }

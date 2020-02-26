@@ -42,9 +42,10 @@ namespace OnlineShop.Services
             return products.To<ProductViewModel>().ToList();
         }
 
-        public async Task Create(ProductInputModel model)
+        public async Task Create(ProductInputModel model, string path)
         {
             Product product = model.To<Product>();
+            product.Image = path;
             await context.Products.AddAsync(product);
             await context.SaveChangesAsync();
         }
@@ -62,7 +63,6 @@ namespace OnlineShop.Services
         {
             Product product = context.Products.Find(id);
             product.Name = model.Name;
-            product.Image = model.Image;
             product.Price = model.Price;
             product.Description = model.Description;
             product.CategoryId = model.CategoryId;

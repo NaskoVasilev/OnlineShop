@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnlineShop.InputModels.Product;
 using OnlineShop.Services;
@@ -11,10 +12,19 @@ namespace OnlineShop.Controllers
     public class ProductController : ApiController
     {
         private readonly IProductService productService;
+        private readonly IFileService fileService;
+        private readonly IHostingEnvironment hostingEnvironment;
 
-        public ProductController(IProductService productService)
+        public IFileService FileService => fileService;
+
+        public ProductController(
+            IProductService productService, 
+            IFileService fileService,
+            IHostingEnvironment hostingEnvironment)
         {
             this.productService = productService;
+            this.fileService = fileService;
+            this.hostingEnvironment = hostingEnvironment;
         }
 
         [HttpGet]
@@ -32,14 +42,18 @@ namespace OnlineShop.Controllers
                 return BadRequest();
             }
 
-            await productService.Create(model);
+            string extension = fileService.GetExtension(model.Image.FileName);
+            string path = fileService.GenerateImagePath(hostingEnvironment.WebRootPath, extension);
+            fileService.Create(model.Image.OpenReadStream(), path);
+
+            await productService.Create(model, path);
             return StatusCode(StatusCodes.Status201Created);
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, ProductInputModel model)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || model.Image == null)
             {
                 return BadRequest();
             }
